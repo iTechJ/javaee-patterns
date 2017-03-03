@@ -20,9 +20,9 @@
     <section>
         <h1> ${data.name} </h1>
         <p> ${data.description} </p>
-        <form class="navigation-form" action="/page1" method="POST">
+        <form class="navigation-form" action="/page2" method="POST">
             <input type="hidden" name="command" value="viewPage1"/>
-            <input type="submit" value="Совершить другие действие"/>
+            <input type="submit" value="Совершить какое-то действие"/>
         </form>
 
         <form class="navigation-form" action="/welcome" method="POST">

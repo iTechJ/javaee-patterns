@@ -20,7 +20,7 @@
     <section>
         <h1> ${data.name} </h1>
         <p> ${data.description} </p>
-        <form class="navigation-form" action="/page2" method="POST">
+        <form class="navigation-form" action="/page1" method="POST">
             <input type="hidden" name="command" value="viewPage2"/>
             <input type="submit" value="Совершить действие"/>
         </form>

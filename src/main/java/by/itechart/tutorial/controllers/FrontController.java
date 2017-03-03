@@ -1,6 +1,9 @@
 package by.itechart.tutorial.controllers;
 
 import by.itechart.tutorial.model.PageData;
+import by.itechart.tutorial.services.Command;
+import by.itechart.tutorial.services.Commands;
+import by.itechart.tutorial.services.StaticResourcesHelper;
 import org.apache.commons.io.IOUtils;
 
 import javax.servlet.ServletContext;
@@ -41,22 +44,7 @@ public class FrontController extends HttpServlet {
     }
 
     private void processStaticResource(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException  {
-        ServletContext context = request.getServletContext();
-        InputStream is = null;
-        OutputStream os = null;
-        try {
-           is = context.getResourceAsStream(request.getRequestURI());
-            os = response.getOutputStream();
-            IOUtils.copy(is, os);
-        }
-        finally {
-            if(is != null) {
-                is.close();
-            }
-            if(os != null) {
-                os.close();
-            }
-        }
+       new StaticResourcesHelper().execute(request, response);
     }
 
     //It's not very accurate function actually... just to exemplify the case
@@ -69,59 +57,9 @@ public class FrontController extends HttpServlet {
     }
 
     private void processDynamicResource(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException  {
-        String command = "";
-        if (request.getParameter("command") != null) {
-            command = request.getParameter("command");
+        Command command = Commands.getRequestProcessor(request.getParameter("command"));
+        if(command != null) {
+            command.execute(request, response);
         }
-        switch(command) {
-            case "viewPage1" : {
-                prepareDataForPage1(request, response );
-                break;
-            }
-            case "viewPage2" : {
-                prepareDataForPage3(request, response);
-                break;
-            }
-            case "viewWelcome" : {
-                prepareDataForWelcomePage(request, response );
-                break;
-            }
-            default : {
-                prepareDataForWelcomePage(request, response );
-                break;
-            }
-        }
-    }
-
-    private void prepareDataForWelcomePage(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException  {
-        fetchPageDataFromDatabase(request, response);
-        performSomeAdditionalProcessing(request, response);
-        request.setAttribute("title", "Front Controller ");
-        request.setAttribute("data", new PageData("Список фильтров этого примера", " 1 - Фильтр, устанавливающий кодировку для RQ/RS. 2 - Фильтр, осуществляюший логгирование RQ/RS. 3- Перенаправление на другие URL\n"));
-        request.getRequestDispatcher("/WEB-INF/welcome.jsp").forward(request, response);
-    }
-
-    private void prepareDataForPage1(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException  {
-        fetchPageDataFromDatabase(request, response);
-        performSomeAdditionalProcessing(request, response);
-        request.setAttribute("title", "Front Controller - Страница 1");
-        request.setAttribute("data", new PageData("Представление 1", "Страница, требующая подготовки большого числа данных"));
-        request.getRequestDispatcher("/WEB-INF/page1.jsp").forward(request, response);
-    }
-
-    private void prepareDataForPage3(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException  {
-        fetchPageDataFromDatabase(request, response);
-        performSomeAdditionalProcessing(request, response);
-        request.setAttribute("title", "Front Controller  - Страница 3");
-        request.setAttribute("data", new PageData("Redirect со старых адресов на новые", "Зачастую необходимо, чтобы устаревшие адреса все равно возвращали контент. Это можно реализовать посредством фильтра. Сервлет, возвративший эту страницу, замаплен на path, отличный от того, что можно видеть в браузере. Фильтр перенаправляет запрос со старого URL на новый."));
-        request.getRequestDispatcher("/WEB-INF/page3.jsp").forward(request, response);
-    }
-
-    private void fetchPageDataFromDatabase(HttpServletRequest request, HttpServletResponse response) {
-        //Different queries to databases or web services here
-    }
-
-    private void performSomeAdditionalProcessing(HttpServletRequest request, HttpServletResponse response) {
-        //Page business logic here
     }
 }
