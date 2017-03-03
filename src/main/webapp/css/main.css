@@ -1,0 +1,13 @@
+.navigation-form{
+    margin-top : 10px;
+}
+footer {
+    width : 100%;
+    position:fixed;
+    bottom: 0px;
+    border-top : 2px solid black;
+}
+
+footer p {
+    text-align: center;
+}
