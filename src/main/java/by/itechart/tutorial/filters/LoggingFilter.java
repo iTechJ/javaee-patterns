@@ -1,4 +1,4 @@
-package by.itechart.tutorial;
+package by.itechart.tutorial.filters;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -29,7 +29,7 @@ public class LoggingFilter implements  Filter {
             builder.append("\nHeader " + header + " has value " + headerValue);
         }
         builder.append("\nResponse status is :" + httpServletResponse.getStatus());
-        System.out.println(builder.toString());
+     //   System.out.println(builder.toString());
     }
 
     private void logRequest(ServletRequest request) {
@@ -40,7 +40,6 @@ public class LoggingFilter implements  Filter {
         while(headers.hasMoreElements()){
             String header = headers.nextElement();
             String headerValue = httpServletRequest.getHeader(header);
-            System.out.println("\nHeader :" + header + ", value: " + headerValue);
             builder.append("\nHeader " + header + " has value " + headerValue);
         }
         builder.append("\nRequest headers are :" + params.size());
@@ -48,19 +47,19 @@ public class LoggingFilter implements  Filter {
         for(String param : params.keySet()) {
             builder.append("\nParameter " + param + " has value " + params.get(param).toString());
         }
-        System.out.println(builder.toString());
+     //   System.out.println(builder.toString());
     }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         System.out.println("==== Going to log request ====" );
-        StringBuilder builder = new StringBuilder();
+        /*logRequest(request);
         System.out.println("==== End ====");
-        logRequest(request);
+        */
         filterChain.doFilter(request, response);//sends request to next resource
         System.out.println("==== Going to log response ====");
-        logResponse(response);
-        System.out.println("==== End ====" );
+        /*logResponse(response);
+        System.out.println("==== End ====" );*/
 
     }
 

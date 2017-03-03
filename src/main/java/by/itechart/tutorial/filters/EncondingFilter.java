@@ -1,4 +1,4 @@
-package by.itechart.tutorial;
+package by.itechart.tutorial.filters;
 
 
 import javax.servlet.*;
