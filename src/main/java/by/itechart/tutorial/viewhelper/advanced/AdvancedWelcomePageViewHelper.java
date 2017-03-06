@@ -25,8 +25,8 @@ public class AdvancedWelcomePageViewHelper implements Command {
         request.setAttribute("result1", result1);
         request.setAttribute("result2", result2);
 
-        request.setAttribute("title", "Data Transfer Object");
-        request.setAttribute("data", new PageData("Data Transfer Object", "Передача данных с одного уровня приложения на другой происходит с помощью DTO"));
+        request.setAttribute("title", "Data Access Object");
+        request.setAttribute("data", new PageData("Data Access Object", "Обращение к базам данных и сторонним ресурсам должно быть инкапсулировано в DAO"));
         request.setAttribute("page", new PageSpecification("/WEB-INF/common/footer.jsp", "/WEB-INF/common/header.jsp", "/WEB-INF/contents/advanced/welcome.jsp"));
         request.getRequestDispatcher("/WEB-INF/common/layout.jsp").forward(request, response);
     }

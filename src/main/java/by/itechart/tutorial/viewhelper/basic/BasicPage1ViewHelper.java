@@ -22,7 +22,7 @@ public class BasicPage1ViewHelper implements Command {
         Service1Result result1 = new BusinessService1().performSomeAction(params1);
 
         request.setAttribute("result", result1);
-        request.setAttribute("title", "DTO - Basic Страница 1");
+        request.setAttribute("title", "DAO - Basic Страница 1");
         request.setAttribute("data", new PageData("Представление 1", "Содержимое страницы"));
         request.setAttribute("page", new PageSpecification("/WEB-INF/common/footer.jsp", "/WEB-INF/common/header.jsp", "/WEB-INF/contents/basic/page1.jsp"));
         request.getRequestDispatcher("/WEB-INF/common/layout.jsp").forward(request, response);

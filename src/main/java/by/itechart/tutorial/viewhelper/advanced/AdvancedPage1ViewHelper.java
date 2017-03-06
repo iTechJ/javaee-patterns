@@ -21,7 +21,7 @@ public class AdvancedPage1ViewHelper implements Command {
         Service1Params params = new Service1Params(request.getParameter("info"),request.getParameter("version"));
         Service1Result result = new BusinessService1().performSomeAction(params);
         request.setAttribute("result", result);
-        request.setAttribute("title", "DTO - Advanced Страница 1");
+        request.setAttribute("title", "DAO - Advanced Страница 1");
         request.setAttribute("data", new PageData("Представление 1", "Некоторый контент специфический для этой advanced страницы"));
         request.setAttribute("page", new PageSpecification("/WEB-INF/common/footer.jsp", "/WEB-INF/common/header.jsp", "/WEB-INF/contents/advanced/page1.jsp"));
         request.getRequestDispatcher("/WEB-INF/common/layout.jsp").forward(request, response);

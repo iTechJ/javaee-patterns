@@ -1,5 +1,6 @@
 package by.itechart.tutorial.services;
 
+import by.itechart.tutorial.dao.Entity1DAO;
 import by.itechart.tutorial.dto.Service1Params;
 import by.itechart.tutorial.dto.Service1Result;
 import by.itechart.tutorial.model.DbEntity1;
@@ -26,12 +27,8 @@ public class BusinessService1 {
 
     //...
     private Service1Result fetchInformationFromDatabase(Service1Params params) {
-        DbEntity1 dbRecord = executeDBQuery(params);
+        DbEntity1 dbRecord = new Entity1DAO().findBySomeCriteria();
         Service1Result result = new Service1Result(dbRecord.getResult());
         return result;
-    }
-
-    private DbEntity1 executeDBQuery(Service1Params params) {
-        return new DbEntity1(System.currentTimeMillis());
     }
 }

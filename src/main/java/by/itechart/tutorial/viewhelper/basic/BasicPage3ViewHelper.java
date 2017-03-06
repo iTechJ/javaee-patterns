@@ -20,7 +20,7 @@ public class BasicPage3ViewHelper implements Command {
 
         request.setAttribute("result", result2);
 
-        request.setAttribute("title", "DTO - Basic Страница 3");
+        request.setAttribute("title", "DAO - Basic Страница 3");
         request.setAttribute("data", new PageData("Стратегии", "Содержимое страницы"));
         request.setAttribute("page", new PageSpecification("/WEB-INF/common/footer.jsp", "/WEB-INF/common/header.jsp", "/WEB-INF/contents/basic/page3.jsp"));
         request.getRequestDispatcher("/WEB-INF/common/layout.jsp").forward(request, response);
