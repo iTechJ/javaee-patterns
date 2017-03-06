@@ -1,4 +1,4 @@
-package by.itechart.tutorial.model;
+package by.itechart.tutorial.dto;
 
 /**
  * Created by alexander.belyaev on 3/3/2017.

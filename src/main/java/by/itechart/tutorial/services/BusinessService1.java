@@ -1,32 +1,37 @@
 package by.itechart.tutorial.services;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import by.itechart.tutorial.dto.Service1Params;
+import by.itechart.tutorial.dto.Service1Result;
+import by.itechart.tutorial.model.DbEntity1;
 
 /*
-    The meaning of Session Facade has changed a lot.
-    There are no more remove access to business logic objects
-    Now it's more about providing View helpers/Command with high-level API for business operations.
-    To perform some processing, ViewHelper or Command should call BusinessService.performSomeAction() which encapsulated details of processing.
-    It's a bad practise to call BusinessService.step1(); BusinessService.step2(); BusinessService.stepN(); directly.
+  Business logic layout really shouldn't know anything about HttpServletRequest and HttpServletResponse.
+  They perform operations over POJOs
  */
 public class BusinessService1 {
-    public void performSomeAction(HttpServletRequest request, HttpServletResponse response) {
-        step1();
-        step2();
+    public Service1Result performSomeAction(Service1Params params) {
+        step1(params);
+        step2(params);
         //...
-        stepN();
+        return fetchInformationFromDatabase(params);
     }
-    private void step1() {
+
+    private void step1(Service1Params params) {
 
     }
 
-    private void step2() {
+    private void step2(Service1Params params) {
 
     }
 
     //...
-    private void stepN() {
+    private Service1Result fetchInformationFromDatabase(Service1Params params) {
+        DbEntity1 dbRecord = executeDBQuery(params);
+        Service1Result result = new Service1Result(dbRecord.getResult());
+        return result;
+    }
 
+    private DbEntity1 executeDBQuery(Service1Params params) {
+        return new DbEntity1(System.currentTimeMillis());
     }
 }

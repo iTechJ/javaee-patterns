@@ -1,4 +1,4 @@
-package by.itechart.tutorial.model;
+package by.itechart.tutorial.dto;
 
 /* Just an example. You really shouldn't create your own template engine for JSP - there are quite a few on them available */
 public class PageSpecification {
