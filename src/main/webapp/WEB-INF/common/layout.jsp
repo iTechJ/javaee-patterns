@@ -4,7 +4,7 @@
 <html lang="ru">
     <head>
         <meta charset="utf-8">
-        <title>Application controller</title>
+        <title>Session Facade</title>
         <link href="../css/main.css" rel="stylesheet" type="text/css">
     </head>
     <body>
