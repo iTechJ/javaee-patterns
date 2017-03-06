@@ -1,4 +1,4 @@
-package by.itechart.tutorial.services;
+package by.itechart.tutorial.viewhelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

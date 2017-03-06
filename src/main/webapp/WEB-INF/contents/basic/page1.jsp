@@ -5,12 +5,9 @@
 
     <p> ${data.description} </p>
 
-    <form class="navigation-form" action="/page1" method="POST">
-        <input type="hidden" name="command" value="viewPage2"/>
-        <input type="submit" value="Совершить действие"/>
-    </form>
-
+    <p>Единственное действие - вернуться назад</p>
     <form class="navigation-form" action="/welcome" method="POST">
+        <input type="hidden" name="application" value="basic"/>
         <input type="hidden" name="command" value="viewWelcome"/>
         <input type="submit" value="Вернуться назад"/>
     </form>

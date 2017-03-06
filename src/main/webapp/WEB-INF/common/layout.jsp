@@ -4,7 +4,7 @@
 <html lang="ru">
     <head>
         <meta charset="utf-8">
-        <title>Составное представление</title>
+        <title>Application controller</title>
         <link href="../css/main.css" rel="stylesheet" type="text/css">
     </head>
     <body>

@@ -1,8 +1,6 @@
 package by.itechart.tutorial.controllers;
 
-import by.itechart.tutorial.services.Command;
-import by.itechart.tutorial.services.Commands;
-import by.itechart.tutorial.services.StaticResourcesHelper;
+import by.itechart.tutorial.viewhelper.StaticResourcesHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /*
- Now the task of Front Controller is to delegate processing to specif handler
+  With Application Controller, responsibility of FrontController is to decide which Application Controller should process the request
+  View Helper selected moved to Application Controller logic
  */
 @WebServlet("/")
 public class FrontController extends HttpServlet {
@@ -51,9 +50,13 @@ public class FrontController extends HttpServlet {
     }
 
     private void processDynamicResource(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException  {
-        Command command = Commands.getRequestProcessor(request.getParameter("command"));
-        if(command != null) {
-            command.execute(request, response);
+        String app = request.getParameter("application");
+        ApplicationController controller = ApplicationControllerMapper.getRequestProcessor(app);
+        if (controller != null) {
+            System.out.println("Request for " + app + " be served by" + controller.getControllerName() + "controller");
+            controller.processRequest(request, response);
+        } else {
+            System.out.println("Command Handler not found!");
         }
     }
 }
