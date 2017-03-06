@@ -1,6 +1,7 @@
 package by.itechart.tutorial.services;
 
 import by.itechart.tutorial.model.PageData;
+import by.itechart.tutorial.model.PageSpecification;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,9 +17,10 @@ public class Page1ViewHelper implements Command {
         System.out.println("=========Page 1 HELPER ===========");
         fetchPageDataFromDatabase(request, response);
         performSomeAdditionalProcessing(request, response);
-        request.setAttribute("title", "View Helper - Страница 1");
-        request.setAttribute("data", new PageData("Представление 1", "View Helper - это тот компонент, которые отвечает за подготовку данных для страницы. Некорректо обращаться к базе данных, файлам и сторонним сервисам, из JSP или FrontController"));
-        request.getRequestDispatcher("/WEB-INF/page1.jsp").forward(request, response);
+        request.setAttribute("title", "Composite View - Страница 1");
+        request.setAttribute("data", new PageData("Представление 1", "Sub View сами могут быть реализованы как Composite view"));
+        request.setAttribute("page", new PageSpecification("/WEB-INF/common/footer.jsp", "/WEB-INF/common/header.jsp", "/WEB-INF/contents/page1.jsp"));
+        request.getRequestDispatcher("/WEB-INF/common/layout.jsp").forward(request, response);
     }
 
     private void fetchPageDataFromDatabase(HttpServletRequest request, HttpServletResponse response) {

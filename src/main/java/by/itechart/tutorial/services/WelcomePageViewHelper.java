@@ -1,6 +1,7 @@
 package by.itechart.tutorial.services;
 
 import by.itechart.tutorial.model.PageData;
+import by.itechart.tutorial.model.PageSpecification;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,9 +17,13 @@ public class WelcomePageViewHelper  implements Command {
         System.out.println("=========WELCOME HELPER ===========");
         fetchPageDataFromDatabase(request, response);
         performSomeAdditionalProcessing(request, response);
-        request.setAttribute("title", "View Helper");
-        request.setAttribute("data", new PageData("Помошник представления, реализованный на стороне сервлета", "Логика, ранее находившаяся во FrontController, теперь была перемещена в отдельные  для каждой страницы"));
-        request.getRequestDispatcher("/WEB-INF/welcome.jsp").forward(request, response);
+        request.setAttribute("title", "Composite View");
+        request.setAttribute("data", new PageData("Составное представление, реализованное с помощью стандартного тега",
+                "Composite View позволяет избавиться от повторного использования частей View типа 'copy-paste'" +
+                 "В данном случае header, footer и общий шаблон страницы  был общий для всех представлений приложения и были вынесены в отдельные sub-view."
+              ));
+        request.setAttribute("page", new PageSpecification("/WEB-INF/common/footer.jsp", "/WEB-INF/common/header.jsp", "/WEB-INF/contents/welcome.jsp"));
+        request.getRequestDispatcher("/WEB-INF/common/layout.jsp").forward(request, response);
     }
 
     private void fetchPageDataFromDatabase(HttpServletRequest request, HttpServletResponse response) {
