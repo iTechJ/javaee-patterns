@@ -17,7 +17,7 @@ public class WelcomePageViewHelper  implements Command {
         fetchPageDataFromDatabase(request, response);
         performSomeAdditionalProcessing(request, response);
         request.setAttribute("title", "View Helper");
-        request.setAttribute("data", new PageData("Помошник предствавления в виде сервлета", "Логика, ранее находившаяся во FrontController, теперь была перемещена в отдельные классы для каждой страницы"));
+        request.setAttribute("data", new PageData("Помошник представления, реализованный на стороне сервлета", "Логика, ранее находившаяся во FrontController, теперь была перемещена в отдельные  для каждой страницы"));
         request.getRequestDispatcher("/WEB-INF/welcome.jsp").forward(request, response);
     }
 
