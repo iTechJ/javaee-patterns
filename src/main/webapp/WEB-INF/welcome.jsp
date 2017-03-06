@@ -4,7 +4,7 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <title>Контроллер переднего плана</title>
+    <title>Система поддержки представления</title>
     <link href="../css/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>

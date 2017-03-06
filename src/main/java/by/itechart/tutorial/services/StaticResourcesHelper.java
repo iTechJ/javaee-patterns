@@ -1,6 +1,5 @@
 package by.itechart.tutorial.services;
 
-import by.itechart.tutorial.model.PageData;
 import org.apache.commons.io.IOUtils;
 
 import javax.servlet.ServletContext;

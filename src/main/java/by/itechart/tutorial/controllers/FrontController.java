@@ -1,24 +1,18 @@
 package by.itechart.tutorial.controllers;
 
-import by.itechart.tutorial.model.PageData;
 import by.itechart.tutorial.services.Command;
 import by.itechart.tutorial.services.Commands;
 import by.itechart.tutorial.services.StaticResourcesHelper;
-import org.apache.commons.io.IOUtils;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 /*
- Putting all code into single class is considered to be anti-pattern "Good object"
- We'll show you the proper way of resolving this problem later during this tutorial
+ Now the task of Front Controller is to delegate processing to specif handler
  */
 @WebServlet("/")
 public class FrontController extends HttpServlet {
